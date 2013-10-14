@@ -1,0 +1,11 @@
+#/bin/bash
+./traceserverd -v&
+./traceclientd&
+./tracedemo&
+
+echo start your tests
+read -p "Press any key after tests finished"
+
+killall traceserverd
+killall traceclientd
+killall tracedemo
