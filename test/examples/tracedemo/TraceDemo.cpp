@@ -3,10 +3,10 @@
 
 
 #include <stdio.h>
-#include <qapplication.h>
+#include <QtGui/QApplication>
 #include <qmap.h>
 //Added by qt3to4:
-#include <QTimerEvent>
+#include <QtCore/QTimerEvent>
 
 BEGIN_TRACESCOPE_DEF(MyDlg)
   TRACE_SCOPE_DEF( tools_tracetool_tracedemo_main )
@@ -31,7 +31,7 @@ END_TRACECALLBACK_REGISTER(MyDlg)
 MyDlg::MyDlg()
 {
   TRACECALLBACK_HANDLER_INIT(MyDlg)
-  
+
   TraceScope(tools_tracetool_tracedemo_mydlg_ctor);
   TraceDbg1(QString("%1").arg("start Timer1: 1000"));
   miTimerID1 = startTimer(1000);
@@ -79,8 +79,8 @@ void MyDlg::timerfunc()
 void MyDlg::dump()
 {
   TraceScope(tools_tracetool_tracedemo_mydlg_dump);
-  
-  QString str;  
+
+  QString str;
   str.sprintf("timer event 0 occured %d times", miCntId0);
   TraceError(str);
   str.sprintf("timer event 1 occured %d times", miCntId1);
@@ -96,13 +96,13 @@ int main( int argc, char* argv[] )
 
   TraceScope(tools_tracetool_tracedemo_mydlg_main);
   TraceDbg1("opening Dlg");
- 
+
   MyDlg dlg;
   dlg.show();
   app.setMainWidget(&dlg);
   app.exec();
 
- // TRACECALLBACK_CALL( MyDlg, dump,0,0,0,0) 
+ // TRACECALLBACK_CALL( MyDlg, dump,0,0,0,0)
  // TraceDestroy();
   return 0;
 }

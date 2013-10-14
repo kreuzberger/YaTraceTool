@@ -18,3 +18,8 @@ QT4_WRAP_CPP( YATRACECLIENT_MOC_HEADERS TraceClient.h TraceClientCBView.h TCClie
 include(${QT_USE_FILE})
 add_executable(yatraceclient ${SOURCES} ${YATRACECLIENT_MOC_HEADERS})
 target_link_libraries(yatraceclient yatracelib ${QT_LIBRARIES})
+
+install(TARGETS yatraceclient
+          RUNTIME DESTINATION bin
+          LIBRARY DESTINATION lib
+          ARCHIVE DESTINATION lib/static)

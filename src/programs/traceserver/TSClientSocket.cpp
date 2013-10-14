@@ -22,7 +22,7 @@ TSClientSocket::TSClientSocket( Trace::TracePort port, int socket,QObject *paren
     connect( this ,SIGNAL(clearFilter(const TSClientSocket& , const Trace::TracePID& )),parent->parent(),SLOT(clearFilter(const TSClientSocket& , const Trace::TracePID& )));
     connect( this ,SIGNAL(closedConnection(const int&)),parent,SLOT(closedConnection(const int&) ));
 
-    setSocketDescriptor(socket);
+    setSocket(socket);
 
     if( Trace::TraceServer_Port == mPort)
     {
