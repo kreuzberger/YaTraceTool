@@ -1,16 +1,22 @@
+#include "TraceTest.h"
+#include <QtTest>
+
+
+QTEST_APPLESS_MAIN(TraceTest);
+
 #include <lib/tracelib/Trace.h>
 //Added by qt3to4:
 #include <QtCore/QDataStream>
 #include "lib/tracelib/NTrace.h"
 
-TEST( callback_serialisation_single )
+void TraceTest::callback_serialisation_single()
 {
   Trace::TraceCallback callbackEmpty;
   Trace::TraceCallback callbackSingle;
   callbackSingle["callbackSingle"]= QStringList("first line");
-  CHECK("first line" == callbackSingle["callbackSingle"].first());
-  CHECK(callbackSingle.contains("callbackSingle"));
-  CHECK_EQUAL(1,callbackSingle["callbackSingle"].count());
+  QVERIFY("first line" == callbackSingle["callbackSingle"].first());
+  QVERIFY(callbackSingle.contains("callbackSingle"));
+  QCOMPARE(1,callbackSingle["callbackSingle"].count());
 
   QByteArray bytearray;
   QDataStream ts( &bytearray,QIODevice::WriteOnly  );
@@ -18,12 +24,12 @@ TEST( callback_serialisation_single )
   QDataStream ds( &bytearray, QIODevice::ReadOnly );
   Trace::deserialize(ds,callbackEmpty);
 
-  CHECK(callbackEmpty.contains("callbackSingle"));
-  CHECK_EQUAL(1,callbackEmpty["callbackSingle"].count());
-  CHECK("first line" == callbackEmpty["callbackSingle"].first());
+  QVERIFY(callbackEmpty.contains("callbackSingle"));
+  QCOMPARE(1,callbackEmpty["callbackSingle"].count());
+  QVERIFY("first line" == callbackEmpty["callbackSingle"].first());
 }
 
-TEST( callback_serialisation_multi )
+void TraceTest::callback_serialisation_multi()
 {
   Trace::TraceCallback callbackEmpty;
   Trace::TraceCallback callbackMulti;
@@ -36,14 +42,14 @@ TEST( callback_serialisation_multi )
   QDataStream ds( &bytearray, QIODevice::ReadOnly );
   Trace::deserialize(ds,callbackEmpty);
 
-  CHECK(callbackEmpty.contains("callbackMulti"));
-  CHECK_EQUAL(2,callbackEmpty["callbackMulti"].count());
-  CHECK("first line" == callbackEmpty["callbackMulti"][0]);
-  CHECK("second line" == callbackEmpty["callbackMulti"][1]);
+  QVERIFY(callbackEmpty.contains("callbackMulti"));
+  QCOMPARE(2,callbackEmpty["callbackMulti"].count());
+  QVERIFY("first line" == callbackEmpty["callbackMulti"][0]);
+  QVERIFY("second line" == callbackEmpty["callbackMulti"][1]);
 
 }
 
-TEST( callback_serialisation_multidigits )
+void TraceTest::callback_serialisation_multidigits()
 {
   Trace::TraceCallback callbackEmpty;
   Trace::TraceCallback callbackMulti;
@@ -56,26 +62,26 @@ TEST( callback_serialisation_multidigits )
   QDataStream ds( &bytearray, QIODevice::ReadOnly );
   Trace::deserialize(ds,callbackEmpty);
 
-  CHECK(callbackEmpty.contains("callbackMulti"));
-  CHECK_EQUAL(2,callbackEmpty["callbackMulti"].count());
-  CHECK("1" == callbackEmpty["callbackMulti"][0]);
-  CHECK("2" == callbackEmpty["callbackMulti"][1]);
+  QVERIFY(callbackEmpty.contains("callbackMulti"));
+  QCOMPARE(2,callbackEmpty["callbackMulti"].count());
+  QVERIFY("1" == callbackEmpty["callbackMulti"][0]);
+  QVERIFY("2" == callbackEmpty["callbackMulti"][1]);
 
 }
 
-TEST( all_serialisation_single )
+void TraceTest::all_serialisation_single()
 {
   Trace::TraceCallback callbackRcv;
   Trace::TraceCallback callbackSingle;
   callbackSingle["callbackSingle"]= QStringList("first line");
-  CHECK("first line" == callbackSingle["callbackSingle"].first());
-  CHECK(callbackSingle.contains("callbackSingle"));
-  CHECK_EQUAL(1,callbackSingle["callbackSingle"].count());
+  QVERIFY("first line" == callbackSingle["callbackSingle"].first());
+  QVERIFY(callbackSingle.contains("callbackSingle"));
+  QCOMPARE(1,callbackSingle["callbackSingle"].count());
 
   Trace::TraceFilter filterRcv;
   Trace::TraceFilter filterSingle;
   filterSingle["test_single_filter"]=Trace::TraceID_Warn;
-  CHECK_EQUAL(Trace::TraceID_Warn, filterSingle["test_single_filter"]);
+  QCOMPARE(Trace::TraceID_Warn, filterSingle["test_single_filter"]);
 
   Trace::TraceMessage messageRcv;
   Trace::TraceMessage messageSingle;
@@ -90,19 +96,19 @@ TEST( all_serialisation_single )
   QDataStream ds( &bytearray, QIODevice::ReadOnly );
   Trace::deserialize(ds,filterRcv,messageRcv,callbackRcv);
 
-  CHECK(callbackRcv.contains("callbackSingle"));
-  CHECK_EQUAL(1,callbackRcv["callbackSingle"].count());
-  CHECK("first line" == callbackRcv["callbackSingle"].first());
+  QVERIFY(callbackRcv.contains("callbackSingle"));
+  QCOMPARE(1,callbackRcv["callbackSingle"].count());
+  QVERIFY("first line" == callbackRcv["callbackSingle"].first());
 
-  CHECK(filterRcv.contains("test_single_filter"));
-  CHECK_EQUAL(Trace::TraceID_Warn, filterRcv["test_single_filter"]);
+  QVERIFY(filterRcv.contains("test_single_filter"));
+  QCOMPARE(Trace::TraceID_Warn, filterRcv["test_single_filter"]);
 
-  CHECK_EQUAL(messageSingle.count(),messageRcv.count());
-  CHECK_EQUAL(qPrintable(messageSingle.first()),qPrintable(messageRcv.first()));
+  QCOMPARE(messageSingle.count(),messageRcv.count());
+  QCOMPARE(qPrintable(messageSingle.first()),qPrintable(messageRcv.first()));
 
 }
 
-TEST( callback_serialisation_pid )
+void TraceTest::callback_serialisation_pid()
 {
   QByteArray bytearray;
   QDataStream ts( &bytearray,QIODevice::WriteOnly  );
@@ -114,13 +120,13 @@ TEST( callback_serialisation_pid )
   unsigned int pidExpected;
   Trace::deserialize(ds,nameExpected, pidExpected);
 
-  CHECK_EQUAL(qPrintable(nameExpected),qPrintable(name));
-  CHECK_EQUAL(pidExpected, pid);
+  QCOMPARE(qPrintable(nameExpected),qPrintable(name));
+  QCOMPARE(pidExpected, pid);
 
 }
 
 
-TEST( filtermap_serialisation_map )
+void TraceTest::filtermap_serialisation_map()
 {
   Trace::TraceCallbackMap callbackMapRcv;
   Trace::TraceFilter filterRcv;
@@ -128,7 +134,7 @@ TEST( filtermap_serialisation_map )
   Trace::TraceFilterMap filterMap;
   Trace::TraceFilterMap filterMapRcv;
   filterSingle["test_single_filter"]=Trace::TraceID_Warn;
-  CHECK_EQUAL(Trace::TraceID_Warn, filterSingle["test_single_filter"]);
+  QCOMPARE(Trace::TraceID_Warn, filterSingle["test_single_filter"]);
 
   filterMap["testme(0)"]=filterSingle;
 
@@ -145,13 +151,13 @@ TEST( filtermap_serialisation_map )
   QDataStream ds( &bytearray, QIODevice::ReadOnly );
   Trace::deserialize(ds,filterMapRcv,messageRcv,callbackMapRcv);
 
-  CHECK_EQUAL(0,callbackMapRcv.count());
-  CHECK_EQUAL(1,filterMap.count());
+  QCOMPARE(0,callbackMapRcv.count());
+  QCOMPARE(1,filterMap.count());
 
-  CHECK(filterMapRcv["testme(0)"].contains("test_single_filter"));
-  //CHECK_EQUAL(Trace::TraceID_Warn, filterMapRcv["testme(0)"] ["test_single_filter"]);
+  QVERIFY(filterMapRcv["testme(0)"].contains("test_single_filter"));
+  //QCOMPARE(Trace::TraceID_Warn, filterMapRcv["testme(0)"] ["test_single_filter"]);
 
-  CHECK_EQUAL(messageSingle.count(),messageRcv.count());
-  CHECK_EQUAL(qPrintable(messageSingle.first()),qPrintable(messageRcv.first()));
+  QCOMPARE(messageSingle.count(),messageRcv.count());
+  QCOMPARE(qPrintable(messageSingle.first()),qPrintable(messageRcv.first()));
 
 }
