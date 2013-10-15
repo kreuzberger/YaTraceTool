@@ -1,11 +1,11 @@
 @echo off
-start traceserver -v
-start traceclient
-start tracedemo
+start yatraceserver -v
+start yatraceclient
+start yatracedemo
 
 
 echo start your tests
 pause
 
 
-taskkill /F /IM traceserver.exe /IM traceclient.exe /IM tracedemo.exe
+taskkill /F /IM yatraceserver.exe /IM yatraceclient.exe /IM yatracedemo.exe

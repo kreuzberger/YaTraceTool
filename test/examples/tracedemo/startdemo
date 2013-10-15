@@ -1,11 +1,11 @@
 #/bin/bash
-./traceserver -v&
-./traceclient&
-./tracedemo&
+./yatraceserver -v&
+./yatraceclient&
+./yatracedemo&
 
 echo start your tests
 read -p "Press any key after tests finished"
 
-killall traceserver
-killall traceclient
-killall tracedemo
+killall yatraceserver
+killall yatraceclient
+killall yatracedemo
