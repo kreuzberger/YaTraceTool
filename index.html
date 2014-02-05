@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>YaTraceTool by kreuzberger</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/kreuzberger/YaTraceTool">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/kreuzberger/YaTraceTool/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/kreuzberger/YaTraceTool/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>YaTraceTool</h1>
+          <p>Trace / Logging Library in C++ Local or via Network </p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/kreuzberger">kreuzberger</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a name="yatracetool" class="anchor" href="#yatracetool"><span class="octicon octicon-link"></span></a>YaTraceTool</h1>
+
+<p>Trace / Logging Library in C++ Local or via Network </p>
+
+<p>The YaTraceTool supports in tracing message from differen applications by sending them to a central
+server instance which collects the individual messages. An GUI application is also provided to connect
+to the server and view and filter the messages.</p>
+
+<p>Message filtering is not only done on the gui side, the filters are send to the local applications to reduce
+application load and to enable / disable filters at runtime.</p>
+
+<p>The YaTraceTools also supports the definition of callbacks, which can be called by the GUI application to
+execute actions in the application. Also provides parameters for the callbacks. This supports at early points
+of your development if triggers or interfaces to your application cannot be served by a gui or other applications.</p>
+
+<p>YaTraceTool required QT for build and at runtime (for lib, server and gui).</p>
+
+<p>Contains:</p>
+
+<ul>
+<li>TraceLib: C++ Library for binding to your application to receive trace messages and handle callback</li>
+<li>TraceServer: Network Server for central collection of trace messages from applications</li>
+<li>TraceClient: GUI Application for connection to a trace server. Shows Messages, apply filters and execute callbacks</li>
+</ul>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
