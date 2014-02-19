@@ -27,3 +27,5 @@ Below images show the main gui component, the TraceClient application. On The le
 On the right pane the output from the Scope sender with the message time is shown. Enter and exit of scopes are displayed if enabled.
 
 ![](https://raw2.github.com/kreuzberger/YaTraceTool/master/doc/images/YaTraceClient.png)
+
+![](doc/Usage.md)
