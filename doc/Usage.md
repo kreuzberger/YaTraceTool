@@ -6,7 +6,7 @@ For usage of callbacks, the class must also be prepared for handlinge the callba
 
 This is all done by adding macros to your class and source files.
 
-Example 1: Prepare a class for callbacks
+**Prepare a class for callbacks**
 
     class MyDlg
     {
@@ -19,7 +19,7 @@ Example 1: Prepare a class for callbacks
       void dump(); // a callback
     };
 
-Example 2: Definition of trace scopes
+**Definition of trace scopes**
 
 In your source file you define the scopes for a class by adding a block of macros. The scope levels are created by using _ in the scope names
 
@@ -32,7 +32,7 @@ In your source file you define the scopes for a class by adding a block of macro
       TRACE_SCOPE_DEF( tools_tracetool_tracedemo_mydlg_dump )
     END_TRACESCOPE_DEF(MyDlg)
     
-Example 3: Definition of callbacks
+**Definition of callbacks**
 
 Like for scopes, the callbacks are also defined with macros
 
@@ -54,7 +54,7 @@ In the implementation of your class, you must provide a global pointer to your c
       TRACECALLBACK_HANDLER_INIT(MyDlg)
     }
 
-Example 4: Using your scopes
+**Using your scopes**
 
 In any method of your class, just now use the scopes you have defined.
 First add the scope you want your output to occur in.
@@ -71,8 +71,18 @@ Second add the output with macros: TraceWarn, TraceError, TraceDbg....
       TraceError(str);
     }
 
+**Add a definiton of your callbacks**
+    #ifdef USE_TRACE
+      TRACECALLBACK_IMPL(MyDlg,dump)
+        if( 0 != TRACECALLBACK_HANDLER(MyDlg) )
+        {
+          TRACECALLBACK_HANDLER(MyDlg)->dump();
+        }
+      TRACECALLBACK_IMPL_END
+    #endif
 
-Example 4: Init the trace singletion in your process
+
+**Init the trace singletion in your process**
 
 For usage of the trace macros, it is required to instantiate the trace singleton as early as possible in your main application. So in the first lines of your main you init the trace library
 
