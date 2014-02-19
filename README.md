@@ -21,3 +21,9 @@ Contains:
 * TraceLib: C++ Library for binding to your application to receive trace messages and handle callback
 * TraceServer: Network Server for central collection of trace messages from applications
 * TraceClient: GUI Application for connection to a trace server. Shows Messages, apply filters and execute callbacks
+
+Below images show the main gui component, the TraceClient application. On The left pane the traces process with their hierarchical scopes are listed. To disable the scopes or change scop level, just de-/active them.
+
+On the right pane the output from the Scope sender with the message time is shown. Enter and exit of scopes are displayed if enabled.
+
+![](https://raw2.github.com/kreuzberger/YaTraceTool/master/doc/images/YaTraceClient.png)
