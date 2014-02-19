@@ -28,4 +28,4 @@ On the right pane the output from the Scope sender with the message time is show
 
 ![](https://raw2.github.com/kreuzberger/YaTraceTool/master/doc/images/YaTraceClient.png)
 
-![For detailed usage look here](doc/Usage.md)
+[For detailed usage look here](doc/Usage.md)
