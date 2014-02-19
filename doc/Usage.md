@@ -72,6 +72,7 @@ Second add the output with macros: TraceWarn, TraceError, TraceDbg....
     }
 
 **Add a definiton of your callbacks**
+
     #ifdef USE_TRACE
       TRACECALLBACK_IMPL(MyDlg,dump)
         if( 0 != TRACECALLBACK_HANDLER(MyDlg) )
