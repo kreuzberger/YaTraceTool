@@ -45,9 +45,10 @@ int main( int argc, char** argv )
     }
     else if( str.startsWith("--port=") )
     {
-      QString port = str.right(strlen("--port="));
+      QString port = str.right(str.length()-strlen("--port="));
       bool bOk = false;
       sTSPara.uiPort = port.toShort(&bOk);
+      if(!bOk) sTSPara.uiPort = Trace::TraceServer_Port;
     }
 
     else if( "-tc" == str )
@@ -55,10 +56,11 @@ int main( int argc, char** argv )
       QString port = argv[idx+1];
       bool bOk = false;
       sTSPara.uiTCPort = port.toShort(&bOk);
+      if(!bOk) sTSPara.uiTCPort = Trace::TraceClient_Port;
     }
     else if( str.startsWith("--tcport=") )
     {
-      QString port = str.right(strlen("--tcport="));
+      QString port = str.right(str.length()-strlen("--tcport="));
       bool bOk = false;
       sTSPara.uiTCPort = port.toShort(&bOk);
     }

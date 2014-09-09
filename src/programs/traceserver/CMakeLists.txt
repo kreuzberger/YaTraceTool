@@ -12,19 +12,19 @@ set (SOURCES
 
 QT4_WRAP_CPP( YATRACESERVER_MOC_HEADERS TSSimpleServer.h TraceServer.h TSClientSocket.h)
 include(${QT_USE_FILE})
-add_executable(yatraceserverapp ${SOURCES} ${YATRACESERVER_MOC_HEADERS})
-target_link_libraries(yatraceserverapp ${QT_LIBRARIES} yatracelib)
+add_executable(yatraceserver ${SOURCES} ${YATRACESERVER_MOC_HEADERS})
+target_link_libraries(yatraceserver ${QT_LIBRARIES} yatracelib)
 
-install(TARGETS yatraceserverapp
+install(TARGETS yatraceserver
           RUNTIME DESTINATION "yatracetool/bin"
 )
 
 install( PROGRAMS yatraceserver DESTINATION "bin" )
 
 if(WIN32)
-  set( APPS "${CMAKE_INSTALL_PREFIX}/yatracetool/bin/yatraceserverapp.exe")
+  set( APPS "${CMAKE_INSTALL_PREFIX}/yatracetool/bin/yatraceserver.exe")
 else()
-  set( APPS "${CMAKE_INSTALL_PREFIX}/yatracetool/bin/yatraceserverapp")
+  set( APPS "${CMAKE_INSTALL_PREFIX}/yatracetool/bin/yatraceserver")
 endif()
 set( DIRS "${QT_LIBRARY_DIR}")
 set( LIBS "" )

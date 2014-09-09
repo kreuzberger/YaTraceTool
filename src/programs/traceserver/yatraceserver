@@ -1,2 +1,2 @@
 #!/bin/bash
-LD_LIBRARY_PATH=/usr/local/yatracetool/bin /usr/local/yatracetool/bin/yatraceserverapp $*
+LD_LIBRARY_PATH=/usr/local/yatracetool/bin /usr/local/yatracetool/bin/yatraceserver $*
