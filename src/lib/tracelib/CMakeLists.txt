@@ -14,10 +14,11 @@ include(${QT_USE_FILE})
 add_library(yatracelib ${SOURCES} ${YATRACELIB_MOC_HEADERS})
 
 install(TARGETS yatracelib
-          RUNTIME DESTINATION bin
-          LIBRARY DESTINATION lib
-          ARCHIVE DESTINATION lib/static)
+          RUNTIME DESTINATION "yatracetool/bin"
+          LIBRARY DESTINATION "yatracetool/lib"
+          ARCHIVE DESTINATION "yatracetool/lib")
 
 install(FILES Trace.h TraceServerCtrl.h TraceScopeLog.h NTrace.h
-         DESTINATION include/yatrace
+         DESTINATION "yatracetool/include"
 )
+

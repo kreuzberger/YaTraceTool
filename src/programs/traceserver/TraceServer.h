@@ -11,10 +11,19 @@
 class TSClientSocket;
 
 
-typedef struct
+class TraceServerPara
 {
+public:
   bool bLog;
-}TraceServerPara;
+  quint16 uiPort;
+  quint16 uiTCPort;
+
+  TraceServerPara()
+  : bLog (false)
+  , uiPort( Trace::TraceServer_Port )
+  , uiTCPort( Trace::TraceClient_Port )
+  { }
+};
 
 
 class TraceServerAbortHandler: public QObject

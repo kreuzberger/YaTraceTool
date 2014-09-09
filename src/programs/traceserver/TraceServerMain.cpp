@@ -10,7 +10,16 @@
 
 #include "TraceServer.h"
 #include <qapplication.h>
-
+#include <iostream>
+void printUsage()
+{
+  std::cout << "traceserver [options]" << std::endl;
+  std::cout << "options:" << std::endl;
+  std::cout << " --port=         traceserver  port" << std::endl;
+  std::cout << " --tcport=       tracesclient port" << std::endl;
+  std::cout << " --help          print usage" << std::endl;
+  std::cout << " --verbose       print verbose output" << std::endl;
+}
 
 
 int main( int argc, char** argv )
@@ -28,6 +37,37 @@ int main( int argc, char** argv )
     {
       sTSPara.bLog = true;
     }
+    else if( "-p" == str )
+    {
+      QString port = argv[idx+1];
+      bool bOk = false;
+      sTSPara.uiPort = port.toShort(&bOk);
+    }
+    else if( str.startsWith("--port=") )
+    {
+      QString port = str.right(strlen("--port="));
+      bool bOk = false;
+      sTSPara.uiPort = port.toShort(&bOk);
+    }
+
+    else if( "-tc" == str )
+    {
+      QString port = argv[idx+1];
+      bool bOk = false;
+      sTSPara.uiTCPort = port.toShort(&bOk);
+    }
+    else if( str.startsWith("--tcport=") )
+    {
+      QString port = str.right(strlen("--tcport="));
+      bool bOk = false;
+      sTSPara.uiTCPort = port.toShort(&bOk);
+    }
+    else if( "-h" == str || "--help" == str)
+    {
+      printUsage();
+      return 0;
+    }
+
   }
 
   QApplication app( argc, argv );

@@ -20,6 +20,22 @@ add_executable(yatraceclient ${SOURCES} ${YATRACECLIENT_MOC_HEADERS})
 target_link_libraries(yatraceclient yatracelib ${QT_LIBRARIES})
 
 install(TARGETS yatraceclient
-          RUNTIME DESTINATION bin
-          LIBRARY DESTINATION lib
-          ARCHIVE DESTINATION lib/static)
+          RUNTIME DESTINATION "yatracetool/bin"
+)
+
+install( PROGRAMS yatraceclient DESTINATION "bin" )
+
+
+if(WIN32)
+  set( APPS "${CMAKE_INSTALL_PREFIX}/yatracetool/bin/yatraceclient.exe")
+else()
+  set( APPS "${CMAKE_INSTALL_PREFIX}/yatracetool/bin/yatraceclient")
+endif()
+set( DIRS "${QT_LIBRARY_DIR}")
+set( LIBS "" )
+
+INSTALL(CODE "
+    include(BundleUtilities)
+    fixup_bundle(\"${APPS}\"  \"${LIBS}\" \"${DIRS}\")
+    " COMPONENT Runtime)
+

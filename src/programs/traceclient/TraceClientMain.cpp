@@ -2,6 +2,7 @@
 #include "TraceClientView.h"
 #include <qapplication.h>
 #include <iostream>
+#include "lib/tracelib/NTrace.h"
 
 void printUsage()
 {
@@ -19,7 +20,7 @@ int main( int argc, char** argv )
   TraceClientPara oPara;
 
   oPara.moHost = "127.0.0.1";
-  oPara.muiPort = 4242;
+  oPara.muiPort = Trace::TraceClient_Port;
   oPara.mbAutoConnect = false;
 
   for(int idx=0; idx < argc; idx++)

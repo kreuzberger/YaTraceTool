@@ -35,8 +35,8 @@ namespace Trace
   const TraceID TraceID_Error= 4;
   const TraceID TraceID_EnterExit= 8;
 
-  const Trace::TracePort TraceServer_Port = 4947;
-  const Trace::TracePort TraceClient_Port = 4242;
+  const Trace::TracePort TraceServer_Port = 42142;
+  const Trace::TracePort TraceClient_Port = 42147;
 
   const unsigned int TraceArgs = 10;
 
