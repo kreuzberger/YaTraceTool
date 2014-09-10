@@ -18,7 +18,7 @@ install(TARGETS yatracelib
           LIBRARY DESTINATION "yatracetool/lib"
           ARCHIVE DESTINATION "yatracetool/lib")
 
-install(FILES Trace.h TraceServerCtrl.h TraceScopeLog.h NTrace.h
+install(FILES Trace.h TraceServerCtrl.h TraceScopeLog.h NTrace.h TraceServerCtrlThread.h
          DESTINATION "yatracetool/include"
 )
 
