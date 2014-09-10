@@ -22,9 +22,9 @@ target_link_libraries(yatraceclient yatracelib ${QT_LIBRARIES})
 install(TARGETS yatraceclient
           RUNTIME DESTINATION "yatracetool/bin"
 )
-
-install( PROGRAMS yatraceclient DESTINATION "bin" )
-
+if( UNIX )
+  install( PROGRAMS yatraceclient DESTINATION "bin" )
+endif()
 
 if(WIN32)
   set( APPS "${CMAKE_INSTALL_PREFIX}/yatracetool/bin/yatraceclient.exe")

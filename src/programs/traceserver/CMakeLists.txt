@@ -19,7 +19,9 @@ install(TARGETS yatraceserver
           RUNTIME DESTINATION "yatracetool/bin"
 )
 
-install( PROGRAMS yatraceserver DESTINATION "bin" )
+if( UNIX )
+  install( PROGRAMS yatraceserver DESTINATION "bin" )
+endif()
 
 if(WIN32)
   set( APPS "${CMAKE_INSTALL_PREFIX}/yatracetool/bin/yatraceserver.exe")
