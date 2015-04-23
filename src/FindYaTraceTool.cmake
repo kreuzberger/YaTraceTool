@@ -5,10 +5,11 @@
 if( NOT "${YATRACETOOL_INCLUDE_DIR}" STREQUAL "" AND NOT "${YATRACETOOL_INCLUDE_DIR}" STREQUAL "YATRACETOOL_INCLUDE_DIR-NOTFOUND")
   set( YATRACETOOL_FOUND true )
 else()
+  set(ENVPROGRAMFILES32 "PROGRAMFILES(X86)")
   if( WIN32 )
     find_path(YATRACETOOL_INCLUDE_DIR
         NAMES Trace.h
-        PATHS $ENV{PATH} "$ENV{PROGRAMFILES}/YaTraceTool/yatracetool" "$ENV{PROGRAMFILES(x86}/YaTraceTool/yatracetool"
+        PATHS $ENV{PATH} "$ENV{PROGRAMFILES}/YaTraceTool/yatracetool" "$ENV{${ENVPROGRAMFILES32}}/YaTraceTool/yatracetool"
         PATH_SUFFIXES include
         DOC "Path to include files for tracelib" )
   else()
@@ -22,7 +23,7 @@ else()
   if( WIN32 )
     find_library(YATRACETOOL_LIBRARY
         NAMES yatracelib
-        PATHS $ENV{PATH} "$ENV{PROGRAMFILES}/YaTraceTool/yatracetool" "$ENV{PROGRAMFILES(x86}/YaTraceTool/yatracetool"
+        PATHS $ENV{PATH} "$ENV{PROGRAMFILES}/YaTraceTool/yatracetool" "$ENV{${ENVPROGRAMFILES32}}/YaTraceTool/yatracetool"
         PATH_SUFFIXES lib
         DOC "Path to tracelib archive library" )
   else()
